@@ -1,0 +1,13 @@
+<div class="toolbar">
+  <input type="file"
+         (change)="emitSourceText($event)"
+         class="uploader__file"
+         accept=".txt"
+         id="file-uploader">
+  <label for="file-uploader" class="button button-open">
+    Open
+  </label>
+  <button class="button" (click)="saveFile();">Save</button>
+  <hr>
+</div>
+

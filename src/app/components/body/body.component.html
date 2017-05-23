@@ -1,0 +1,31 @@
+<form novalidate>
+  <div class="body__header">
+    <key-input (keyEmitter)="updateKey($event)"></key-input>
+    <div class="flex">
+      <h4>Mode:</h4>
+      <div class="switch__wrapper">
+        <div class="switch__label" [class.switch__label--active]="!mode">
+          Encrypt
+        </div>
+        <label class="switch">
+          <input type="checkbox" name="mode" [checked]="mode" (change)="mode = !mode">
+          <div class="slider round"></div>
+        </label>
+        <div class="switch__label" [class.switch__label--active]="mode">
+          Decrypt
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <textarea mdTextarea required
+            [(ngModel)]="sourceText" name="sourceText"
+            class="root__textarea"
+            (change)="updatedText.emit(sourceText)">
+  </textarea>
+  <button class="button button-floating" type="button" (click)="run(mode, sourceText, key)">
+    RUN
+  </button>
+</form>

@@ -1,0 +1,89 @@
+<div class="key-input">
+  <h4>Decryption Method:</h4>
+  <div>
+    <label *ngFor="let method of encryptionMethods">
+      <input type="radio" name="method"
+             (click)="key.encryptionMethod = method"
+             [checked]="key.encryptionMethod === method">
+      {{method}}
+    </label>
+  </div>
+
+  <!--CEASAR-->
+  <md-input-container *ngIf="key.encryptionMethod === 'Ceasar'">
+    <input type="number" mdInput required
+           placeholder="Key" [(ngModel)]="key.value"
+           name="key" maxLength="18" (change)="emitKey(key);">
+  </md-input-container>
+
+  <!-- Linear -->
+  <div class="key-input__equation" *ngIf="key.encryptionMethod === 'Linear equation'">
+    <md-input-container>
+      <input type="number" mdInput required
+             placeholder="x2" name="key.equation.x2"
+             [(ngModel)]="key.equation.x2"
+             maxLength="18" (change)="emitKey(key)">
+      <span md-suffix>t</span>
+    </md-input-container>
+    +
+    <md-input-container>
+      <input type="number" mdInput required
+             placeholder="x3" name="key.equation.x2"
+             [(ngModel)]="key.equation.x3"
+             maxLength="18" (change)="emitKey(key)">
+    </md-input-container>
+  </div>
+
+  <!-- Quadratic -->
+  <div class="key-input__equation" *ngIf="key.encryptionMethod === 'Quadratic equation'">
+    <md-input-container>
+      <input type="number" mdInput required
+             placeholder="x1" name="key.equation.x1"
+             [(ngModel)]="key.equation.x1"
+             maxLength="18" (change)="emitKey(key)">
+      <span md-suffix>t<sup>2</sup></span>
+    </md-input-container>
+    <div>+</div>
+    <md-input-container>
+      <input type="number" mdInput required
+             placeholder="x2" name="key.equation.x2"
+             [(ngModel)]="key.equation.x2"
+             maxLength="18" (change)="emitKey(key)">
+      <span md-suffix>t</span>
+    </md-input-container>
+    <div>+</div>
+    <md-input-container>
+      <input type="number" mdInput required
+             placeholder="x3" name="key.equation.x2"
+             [(ngModel)]="key.equation.x3"
+             maxLength="18" (change)="emitKey(key)">
+    </md-input-container>
+  </div>
+
+  <!--LABEL-->
+  <md-input-container *ngIf="key.encryptionMethod === 'Phrase'">
+    <input type="text" mdInput required
+           placeholder="Phrase" [(ngModel)]="key.phrase" name="phrase"
+            (change)="emitKey(key)">
+  </md-input-container>
+
+  <!--GAMMA-->
+  <md-input-container *ngIf="key.encryptionMethod === 'Gamma'">
+    <input type="number" mdInput required
+           placeholder="Период гаммы" [(ngModel)]="key.value" name="gamma"
+           (change)="emitKey(key)">
+  </md-input-container>
+
+  <section *ngIf="key.encryptionMethod === 'Literature Excerpt'">
+    <input type="file"
+           (change)="emitLiteratureExcerpt($event)"
+           class="uploader__file"
+           accept=".txt"
+           id="literature-file-uploader">
+    <label for="literature-file-uploader" class="button button-open">
+      Open literature text
+    </label>
+  </section>
+
+
+</div>

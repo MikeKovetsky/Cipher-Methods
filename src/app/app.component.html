@@ -1,0 +1,7 @@
+<h1>My Decryptor</h1>
+<toolbar (sourceText)="loadSourceText($event)"
+         [updatedText]="updatedText">
+</toolbar>
+<body [sourceText]="sourceText"
+      (updatedText)="updateText($event)">
+</body>
